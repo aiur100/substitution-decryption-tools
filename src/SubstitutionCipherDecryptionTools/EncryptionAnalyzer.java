@@ -6,6 +6,9 @@
 package SubstitutionCipherDecryptionTools;
 
 /**
+ * Provides information about a given string block. 
+ * 
+ * letter frequency, word frequency.  
  * 
  * @author theCaptain
  */
