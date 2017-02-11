@@ -5,6 +5,8 @@
  */
 package SubstitutionCipherDecryptionTools;
 
+import java.util.HashMap;
+
 /**
  * Provides information about a given string block. 
  * 
@@ -16,6 +18,7 @@ public class EncryptionAnalyzer {
     
     private final String              textToAnalyze;
     private final Integer[]           aLetterCountList;
+    private final String[]            words;
     private final Integer             letterCountArraySize = 26;
     private final Alphabet            anAlphabet;
     
@@ -27,8 +30,28 @@ public class EncryptionAnalyzer {
         textToAnalyze       = fileText;
         aLetterCountList    = new Integer[26];
         anAlphabet          = new Alphabet();
+        words               = new String[textToAnalyze.length()];
         initializeLetterCountList();
         countLetters();
+    }
+    
+    /**
+     * get words 
+     */
+    public HashMap getWords(){
+        String delims = "[  \t  \n , .]+";
+        String[] tokens = textToAnalyze.split(delims);
+        HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+        for (int i = 0; i < tokens.length; i++){
+            if(hmap.containsKey(tokens[i])){
+                int count = hmap.get(tokens[i]) + 1;
+                hmap.replace(tokens[i],count);
+            }
+            else{
+                hmap.put(tokens[i], 1);
+            }
+        }
+        return hmap;
     }
     
     /**

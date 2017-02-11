@@ -7,7 +7,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -27,6 +31,15 @@ public class SubstitutionCipherDecryptionTools {
          String fileData                = getFileTextAsString(filePath);
          EncryptionAnalyzer analyzer    = new EncryptionAnalyzer(fileData);
          analyzer.printLetterCounts();
+         HashMap<String, Integer> words = analyzer.getWords();
+         /* Display content using Iterator*/
+        Set set = words.entrySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+           Map.Entry mentry = (Map.Entry)iterator.next();
+           System.out.print("Potentional Word:   "+ mentry.getKey() + " -- Word Count:   ");
+           System.out.println(mentry.getValue());
+        }
     }
     
     /**
