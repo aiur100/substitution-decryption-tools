@@ -36,21 +36,47 @@ public class EncryptionAnalyzer {
     }
     
     /**
-     * get words 
+     * get words - using hash maps. 
+     * 
+     * it's like an array where key => value. 
+     * except, you can have an array where the 
+     * key is a string or any data type, and the data in that array
+     * is any data type. 
+     * 
+     * The data structure here is 
+     * [<word-we-are-keeping-count-of>] => [<number-of-times-word-found].
      */
     public HashMap getWords(){
+        //this is the delimiter between words.  
+        //i.e. space, tab which is \t, new line is \n, then commas and periods.
         String delims = "[  \t  \n , .]+";
+        //split function divides all the strings by the delimiter given 
+        //into a string array.
         String[] tokens = textToAnalyze.split(delims);
+        
+        //the map is like an array where [<key is some string>] and the value is some integer
+        //as show by the HashMap<String, Integer> initilalization 
         HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+        
+        //loop through each token that was gotten by using split function above.
+        //this is just each word.
         for (int i = 0; i < tokens.length; i++){
+            
+            //using .containsKey, we check to see if the
+            //hasmap contains a key by that string (or word)
+            //...if it does, we want to update the count, which is the
+            //value of that key in this case.
             if(hmap.containsKey(tokens[i])){
                 int count = hmap.get(tokens[i]) + 1;
                 hmap.replace(tokens[i],count);
             }
-            else{
+            else{//...if the hash map doesn't have that key (or word)
+                //then we want to put that key into it with a token 
+                //represented by the word. 
                 hmap.put(tokens[i], 1);
             }
         }
+        //once complete, return completed hashmap. 
         return hmap;
     }
     
