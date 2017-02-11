@@ -21,11 +21,12 @@ public class SubstitutionCipherDecryptionTools {
     public static void main(String[] args) throws IOException {
         String filePath;
         // TODO code application logic here
-         Scanner in         = new Scanner(System.in);
+         Scanner in                     = new Scanner(System.in);
          System.out.print("Enter file path: ");
-         filePath           = in.nextLine();
-         String fileData    = getFileTextAsString(filePath);
-         System.out.println(fileData);
+         filePath                       = in.nextLine();
+         String fileData                = getFileTextAsString(filePath);
+         EncryptionAnalyzer analyzer    = new EncryptionAnalyzer(fileData);
+         analyzer.printLetterCounts();
     }
     
     /**
@@ -47,6 +48,13 @@ public class SubstitutionCipherDecryptionTools {
         fis.close();//close file
         String fileText     = new String(data, "UTF-8");
         return fileText;
+    }
+    
+    /**
+     * testing method. 
+     */
+    public static void testing(){
+        
     }
     
 }
