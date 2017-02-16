@@ -30,15 +30,48 @@ public class SubstitutionCipherDecryptionTools {
          filePath                       = in.nextLine();
          String fileData                = getFileTextAsString(filePath);
          EncryptionAnalyzer analyzer    = new EncryptionAnalyzer(fileData);
-         analyzer.printLetterCounts();
-         HashMap<String, Integer> words = analyzer.getWords();
-         /* Display content using Iterator*/
+         CipherText cipher              = new CipherText(fileData);
+        analyzer.printLetterCounts();
+        HashMap<String, Integer> words = analyzer.getWords();
+        //Display content using Iterator
         Set set = words.entrySet();
         Iterator iterator = set.iterator();
         while(iterator.hasNext()) {
            Map.Entry mentry = (Map.Entry)iterator.next();
            System.out.print("Potentional Word:   "+ mentry.getKey() + " -- Word Count:   ");
            System.out.println(mentry.getValue());
+        }
+        
+        //Won Murdocq
+        //C:\Users\Won\Downloads\c2_image_authentication.txt
+        //QrhmiHayoityqlhyqvt --encrypted text
+        //imageauthentication --decrypted text
+         
+        String encryptedText, decryptedText;
+        System.out.println("Input the decrypted text: "); // dont add any spaces, numbers or special characters!
+        encryptedText = in.nextLine();
+        
+        System.out.println("Now, input the encryted text for the text above: ");
+        decryptedText = in.nextLine();
+        
+        HashMap<String,String> alphabetTable = cipher.matchLetters(encryptedText, decryptedText);
+        System.out.println(alphabetTable.keySet());
+        System.out.println(alphabetTable.values());
+        
+        String stringPattern = cipher.patternConstructor(alphabetTable);
+        System.out.println("this is working???"+stringPattern);
+        String decipheredText;
+        
+        Scanner stdIn = new Scanner(fileData);   
+        
+        String tmp;
+   
+        
+        while(stdIn.hasNext())
+        {
+           tmp = stdIn.next();
+
+           System.out.println(cipher.textReplacement(tmp, alphabetTable, stringPattern));//ciphered Text
         }
     }
     
