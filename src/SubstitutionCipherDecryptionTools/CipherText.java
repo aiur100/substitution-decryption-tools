@@ -39,25 +39,14 @@ public class CipherText {
                 {
                     encryptedLetter = String.valueOf(enInput.charAt(i));
                     decryptedLetter = String.valueOf(deInput.charAt(i));
+                    i = enInput.length();
                 }   
             }
-           // encryptedLetter = String.valueOf(enInput.charAt(i));
-            //System.out.println("+++"+ encryptedLetter);   
-            
-            //decryptedLetter = String.valueOf(deInput.charAt(i));
-           // System.out.println("+++"+ decryptedLetter);
-
             
             map.put(stringCh,(encryptedLetter.equalsIgnoreCase(stringCh) ? decryptedLetter : null )); 
             
             
         }
-        
-        
-        //decryptedLetter = String.valueOf(input.charAt(i));
-        //map.put(String.valueOf(ch),(decryptedLetter.equals("0") ? null : decryptedLetter ));
-        
-
         
         return map;
     }
@@ -96,7 +85,7 @@ public class CipherText {
          
          if(tmp.matches(pattern))
          {
-            //iterator = set.iterator();
+
             while(iterator.hasNext()) 
             {
                Map.Entry mentry = (Map.Entry)iterator.next();

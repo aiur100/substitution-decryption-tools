@@ -48,18 +48,17 @@ public class SubstitutionCipherDecryptionTools {
         //imageauthentication --decrypted text
          
         String encryptedText, decryptedText;
-        System.out.println("Input the decrypted text: "); // dont add any spaces, numbers or special characters!
+        System.out.println("Input the encrypted text: "); // dont add any spaces, numbers or special characters!
         encryptedText = in.nextLine();
         
-        System.out.println("Now, input the encryted text for the text above: ");
+        System.out.println("Now, input the decrypted text for the text above: ");
         decryptedText = in.nextLine();
         
         HashMap<String,String> alphabetTable = cipher.matchLetters(encryptedText, decryptedText);
-        System.out.println(alphabetTable.keySet());
-        System.out.println(alphabetTable.values());
+
         
         String stringPattern = cipher.patternConstructor(alphabetTable);
-        System.out.println("this is working???"+stringPattern);
+
         String decipheredText;
         
         Scanner stdIn = new Scanner(fileData);   
