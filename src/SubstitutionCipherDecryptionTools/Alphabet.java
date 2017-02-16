@@ -6,7 +6,7 @@
 package SubstitutionCipherDecryptionTools;
 
 /**
- *
+ * some comment
  * @author theCaptain
  */
 public class Alphabet {
