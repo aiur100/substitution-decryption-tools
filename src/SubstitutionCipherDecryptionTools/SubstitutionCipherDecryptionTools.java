@@ -21,6 +21,7 @@ public class SubstitutionCipherDecryptionTools {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         String filePath;
@@ -44,8 +45,8 @@ public class SubstitutionCipherDecryptionTools {
         
         //Won Murdocq
         //C:\Users\Won\Downloads\c2_image_authentication.txt
-        //QrhmiHayoityqlhyqvt --encrypted text
-        //imageauthentication --decrypted text
+        //encrypted text--- abcdefghijklmnopqrstuvwxyz     
+        //--decrypted text--- urvzwyxaebfcgdhlimjnkosptq      
          
         String encryptedText, decryptedText;
         System.out.println("Input the encrypted text: "); // dont add any spaces, numbers or special characters!
@@ -56,21 +57,17 @@ public class SubstitutionCipherDecryptionTools {
         
         HashMap<String,String> alphabetTable = cipher.matchLetters(encryptedText, decryptedText);
 
-        
-        String stringPattern = cipher.patternConstructor(alphabetTable);
-
         String decipheredText;
         
         Scanner stdIn = new Scanner(fileData);   
         
         String tmp;
-   
-        
+
         while(stdIn.hasNext())
         {
            tmp = stdIn.next();
 
-           System.out.println(cipher.textReplacement(tmp, alphabetTable, stringPattern));//ciphered Text
+           System.out.println(cipher.textReplacement(tmp, alphabetTable));//ciphered Text
         }
     }
     
