@@ -6,9 +6,6 @@
 package SubstitutionCipherDecryptionTools;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 /**
  *
  * @author Won
@@ -39,7 +36,7 @@ public class CipherText {
                 {
                     encryptedLetter = String.valueOf(enInput.charAt(i));
                     decryptedLetter = String.valueOf(deInput.charAt(i));
-                    i = enInput.length();
+                    //i = enInput.length();
                 }   
             }
             
@@ -51,54 +48,24 @@ public class CipherText {
         return map;
     }
     
-    public String patternConstructor(HashMap<String, String> map)
-    {
-        
-        String key;        
-        Set set = map.entrySet();
-        Iterator iterator = set.iterator();
-        String pattern = "";
-        while(iterator.hasNext()) 
-        {
-           Map.Entry mentry = (Map.Entry)iterator.next();
-           key = String.valueOf(mentry.getKey());
-           
-           if(mentry.getValue() != null)
-               pattern +=  "(.*)" + key + "(.*)|(.*)" + key.toLowerCase() + "(.*)|";
-           
-        }
-        pattern = pattern.substring(0,pattern.length()-1);
-        
-        
-        
-        return pattern;
-    }
-    
-    public String textReplacement(String word, HashMap<String, String> map,String pattern)
+    public String textReplacement(String word, HashMap<String, String> map)
     {
          
          String tmp = word;
          String stringToReturn = "";
-         Set set = map.entrySet();
-         Iterator iterator = set.iterator();
-         String key, value;
          
-         if(tmp.matches(pattern))
+         for(int i = 0; i < tmp.length(); i++)
          {
 
-            while(iterator.hasNext()) 
-            {
-               Map.Entry mentry = (Map.Entry)iterator.next();
-               key = String.valueOf(mentry.getKey());
-               value = String.valueOf(mentry.getValue());
-               if(!(value.equals("null")))
-               {
-                   tmp = tmp.replaceAll("(?i)" + key, value);
-               }
-            } 
-            stringToReturn = (tmp + " ");
-         }  
+            if(!(String.valueOf(map.get(String.valueOf(tmp.charAt(i)).toUpperCase())).equals("null")))
+                stringToReturn += String.valueOf(map.get(String.valueOf(tmp.charAt(i)).toUpperCase()));
+             
+            else
+                stringToReturn += String.valueOf(tmp.charAt(i));
+         }
             
+         
+           
       
            return stringToReturn;
     }
